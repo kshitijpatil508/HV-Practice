@@ -1,4 +1,4 @@
-let a2 = [-2, -3, 4, -1, -2, 1, 5, -3, 2, 3, 1, 5, -1, 6, 7, 9, 0, 15];
+let a2 = [2, 3, 1, 5, -1, 6, , -3, 4, -1, -2, 7, 9, 0, 15];
 var a = [-2, -3, 4, -1, -2, 1, 5, -3];
 
 function kadanes(a) {
@@ -18,4 +18,4 @@ function kadanes(a) {
   return prev_max;
 }
 
-console.log(kadanes(a2));
+console.log(`Max Sum of continuous subarray: ${kadanes(a2)}`);
