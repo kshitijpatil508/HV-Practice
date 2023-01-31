@@ -1,53 +1,21 @@
-// kadane's algorithm
+let a2 = [-2, -3, 4, -1, -2, 1, 5, -3, 2, 3, 1, 5, -1, 6, 7, 9, 0, 15];
+var a = [-2, -3, 4, -1, -2, 1, 5, -3];
 
-"use strict";
+function kadanes(a) {
+  n = a.length;
+  let current_max = 0;
+  let prev_max = -10000000e12;
 
-const fs = require("fs");
-
-process.stdin.resume();
-process.stdin.setEncoding("utf-8");
-
-let inputString = "";
-let currentLine = 0;
-
-process.stdin.on("data", function (inputStdin) {
-  inputString += inputStdin;
-});
-
-process.stdin.on("end", function () {
-  inputString = inputString.split("\n");
-
-  main();
-});
-
-function readLine() {
-  return inputString[currentLine++];
+  for (let i = 0; i < n; i++) {
+    current_max = current_max + a[i];
+    if (prev_max < current_max) {
+      prev_max = current_max;
+    }
+    if (current_max < 0) {
+      current_max = 0;
+    }
+  }
+  return prev_max;
 }
 
-/*
- * Complete the 'reverseArray' function below.
- *
- * The function is expected to return an INTEGER_ARRAY.
- * The function accepts INTEGER_ARRAY a as parameter.
- */
-
-function reverseArray(a) {
-  return a.reverseArray();
-}
-
-function main() {
-  const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
-
-  const arrCount = parseInt(readLine().trim(), 10);
-
-  const arr = readLine()
-    .replace(/\s+$/g, "")
-    .split(" ")
-    .map((arrTemp) => parseInt(arrTemp, 10));
-
-  const res = reverseArray(arr);
-
-  ws.write(res.join(" ") + "\n");
-
-  ws.end();
-}
+console.log(kadanes(a2));
